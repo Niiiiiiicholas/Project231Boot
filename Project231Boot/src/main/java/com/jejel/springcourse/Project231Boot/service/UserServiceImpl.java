@@ -33,17 +33,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.DEFAULT)
     public void addUser(User user) {
         userDAO.addUser(user);
     }
 
     @Override
+    @Transactional(isolation = Isolation.DEFAULT)
     public void removeUser(long id) {
         userDAO.removeUser(id);
     }
 
     @Override
+    @Transactional(isolation = Isolation.DEFAULT)
     public void updateUser(@Valid User user) {
         userDAO.updateUser(user);
     }

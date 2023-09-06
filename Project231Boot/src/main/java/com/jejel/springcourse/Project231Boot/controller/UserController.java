@@ -27,18 +27,18 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String users(Model model) {
+    public String ShowUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
     }
 
     @GetMapping("/new")
-    public String addUser(User user) {
+    public String addNewUser(User user) {
         return "create";
     }
 
     @PostMapping("/new")
-    public String add(@ModelAttribute("user") User user, BindingResult bindingResult) {
+    public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "create";
         } else {
@@ -48,7 +48,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userService.removeUser(id);
         return "redirect:/";
     }
